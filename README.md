@@ -2,8 +2,6 @@
 
 RGTFormer: A novel deep learning model fusing Relational Graph Convolutional Networks (RGCN) + Categorical Gated Transformer for predicting mutation-driven multi-drug resistance in Mycobacterium tuberculosis. Achieves 98.67% accuracy on independent test set. Covers rpoB, katG, inhA, pncA, gyrA, gyrB genes.
 
-<img src="assets/banner.jpg" alt="RGTFormer Banner" width="100%"/>
-
 **Authors**: Rakesh Chandra Joshi¹, Hitesh Reddy Dereddy², Sandip Mukhopadhyay³, Radim Burget⁴, Malay Kishore Dutta¹*  
 <sup>1</sup>Amity University Noida, India • <sup>2</sup>Amity University Noida • <sup>3</sup>ICMR-NIRTR, Kolkata • <sup>4</sup>Brno University of Technology, Czech Republic  
 *Corresponding: malaykishoredutta@gmail.com

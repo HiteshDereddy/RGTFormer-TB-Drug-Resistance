@@ -73,7 +73,9 @@ RGTFormer = RGCN + CGT + Attention Fusion
 ![Fig 2 – Architecture](figures/architecture.jpg)
 
 **RGCN layer**
-\[h_i^{(l+1)} = \sigma\!\left(\sum_{r\in R}\sum_{j\in N_i^r}\!\tfrac{1}{c_{i,r}}W_r^{(l)}h_j^{(l)}\right)\]
+\begin{equation*}
+h_i^{(l+1)} = \sigma\!\left(\sum_{r\in R}\sum_{j\in N_i^r}\!\tfrac{1}{c_{i,r}}W_r^{(l)}h_j^{(l)}\right)
+\end{equation*}
 
 ![Fig 3 – RGCN](figures/rgc.jpg)
 

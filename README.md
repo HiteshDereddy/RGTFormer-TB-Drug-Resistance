@@ -81,9 +81,7 @@ RGTFormer = RGCN + CGT + Attention Fusion
 \[
 z=ReLU(Wx+b),\quad GLU(z,g)=z\!\cdot\!\sigma(g)
 \]
-\[
-m=Softmax(Wx+b),\quad x'_i=x_i\odot m
-\]
+\[m=Softmax(Wx+b),\quad x'_i=x_i\odot m \]
 ![Fig 4 – CGT](figures/cgt.jpg)
 
 **Fusion + Classification**

@@ -73,9 +73,8 @@ RGTFormer = RGCN + CGT + Attention Fusion
 ![Fig 2 – Architecture](figures/architecture.jpg)
 
 **RGCN layer**
-\[
-h_i^{(l+1)} = \sigma\!\left(\sum_{r\in R}\sum_{j\in N_i^r}\!\tfrac{1}{c_{i,r}}W_r^{(l)}h_j^{(l)}\right)
-\]
+\[h_i^{(l+1)} = \sigma\!\left(\sum_{r\in R}\sum_{j\in N_i^r}\!\tfrac{1}{c_{i,r}}W_r^{(l)}h_j^{(l)}\right)\]
+
 ![Fig 3 – RGCN](figures/rgc.jpg)
 
 **CGT (Gated Transformer)**
@@ -120,12 +119,12 @@ y=Softmax(Wh+b)
 **ROC AUC = 0.9923 (149 / 151 correct)**  
 | Confusion Matrix | ROC Curve |
 |:--:|:--:|
-| ![CM](results/figures/fig5a_confusion_matrix.png) | ![ROC](results/figures/fig5b_roc_curve.png) |
+| ![CM](results/cm.jpg) | ![ROC](results/roc.jpg) |
 
 ---
 
 ## 🧩 Explainability – SHAP
-![Fig 6 – SHAP Importance](results/figures/fig6_shap_importance.png)  
+![Fig 6 – SHAP Importance](results/shap.jpg)  
 Hydrophobicity ≫ Molecular Weight ≫ Isoelectric Point ≫ ASA as key features.
 
 ---

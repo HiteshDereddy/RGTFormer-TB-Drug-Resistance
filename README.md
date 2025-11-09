@@ -2,7 +2,7 @@
 
 RGTFormer: A novel deep learning model fusing Relational Graph Convolutional Networks (RGCN) + Categorical Gated Transformer for predicting mutation-driven multi-drug resistance in Mycobacterium tuberculosis. Achieves 98.67% accuracy on independent test set. Covers rpoB, katG, inhA, pncA, gyrA, gyrB genes.
 
-<img src="assets/banner.png" alt="RGTFormer Banner" width="100%"/>
+<img src="assets/banner.jpeg" alt="RGTFormer Banner" width="100%"/>
 
 **Authors**: Rakesh Chandra Joshi¹, Hitesh Reddy Dereddy², Sandip Mukhopadhyay³, Radim Burget⁴, Malay Kishore Dutta¹*  
 <sup>1</sup>Amity University Noida, India • <sup>2</sup>Amity University Noida • <sup>3</sup>ICMR-NIRTR, Kolkata • <sup>4</sup>Brno University of Technology, Czech Republic  
@@ -32,7 +32,7 @@ Tuberculosis (TB) remains a critical global health concern due to multi-drug-res
 
 ## Model Architecture
 
-<img src="figures/architecture.png" alt="RGTFormer Architecture" width="100%"/>
+<img src="figures/architecture.jpeg" alt="RGTFormer Architecture" width="100%"/>
 
 **Two parallel branches**:
 - **RGCN**: Captures relational dependencies between mutations (physicochemical + co-occurrence edges)
@@ -61,10 +61,10 @@ Outputs fused via learnable attention → binary classification (Resistant / Sus
 
 | Figure | Description |
 |--------|-----------|
-| <img src="figures/workflow.png" width="300"/> | **Fig 1.** Overall workflow: data → features → RGTFormer → prediction |
-| <img src="figures/architecture.png" width="300"/> | **Fig 2.** Detailed RGTFormer architecture (RGCN + CGT + fusion) |
-| <img src="figures/cgt.png" width="300"/> | **Fig 3.** Categorical Gated Transformer (CGT) module internals |
-| <img src="figures/rgc.png" width="300"/> | **Fig 4.** RGCN module internals |
+| <img src="figures/workflow.jpeg" width="300"/> | **Fig 1.** Overall workflow: data → features → RGTFormer → prediction |
+| <img src="figures/architecture.jpeg" width="300"/> | **Fig 2.** Detailed RGTFormer architecture (RGCN + CGT + fusion) |
+| <img src="figures/cgt.jpeg" width="300"/> | **Fig 3.** Categorical Gated Transformer (CGT) module internals |
+| <img src="figures/rgc.jpeg" width="300"/> | **Fig 4.** RGCN module internals |
 
 ---
 

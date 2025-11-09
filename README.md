@@ -137,21 +137,9 @@ Hydrophobicity ≫ Molecular Weight ≫ Isoelectric Point ≫ ASA as key feature
 | Hydrophobicity | −0.0456 | 0.3268 | −0.92 | 0.92 |
 | Norm ASA | 0.4797 | 0.2721 | 0 | 1 |
 
-### Feature Distributions
-![Vol](results/figures/appendix_a1_volume.png)
-![Pol](results/figures/appendix_a2_polarity.png)
-![ASA](results/figures/appendix_a3_asa.png)
-![MW](results/figures/appendix_a4_weight.png)
-![pI](results/figures/appendix_a5_pI.png)
-![Hydro](results/figures/appendix_a6_hydrophobicity.png)
-
-### Residue & Structure Counts
-![Wild](results/figures/appendix_a7_wildtype_counts.png)
-![Mut](results/figures/appendix_a8_mutant_counts.png)
-![Struct](results/figures/appendix_a9_secondary_structure.png)
 
 ### Correlation Matrix
-![Corr](results/figures/appendix_a10_correlation_matrix.png)
+![Corr](results/crm.jpg)
 
 ---
 

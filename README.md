@@ -1,158 +1,185 @@
-# RGTFormer: Categorical Gated Transformer and Relational Graph Convolutional Network for Predicting Mutation-Associated Multi-Drug Resistance in *Mycobacterium tuberculosis*
+# RGTFormer: Categorical Gated Transformer + Relational Graph Convolutional Network  
+### Predicting Mutation-Associated Multi-Drug Resistance in *Mycobacterium tuberculosis*
 
-RGTFormer: A novel deep learning model fusing Relational Graph Convolutional Networks (RGCN) + Categorical Gated Transformer for predicting mutation-driven multi-drug resistance in Mycobacterium tuberculosis. Achieves 98.67% accuracy on independent test set. Covers rpoB, katG, inhA, pncA, gyrA, gyrB genes.
-
-**Authors**: Rakesh Chandra Joshi¹, Hitesh Reddy Dereddy², Sandip Mukhopadhyay³, Radim Burget⁴, Malay Kishore Dutta¹*  
-<sup>1</sup>Amity University Noida, India • <sup>2</sup>Amity University Noida • <sup>3</sup>ICMR-NIRTR, Kolkata • <sup>4</sup>Brno University of Technology, Czech Republic  
-*Corresponding: malaykishoredutta@gmail.com
-
----
-
-## Abstract
-
-Tuberculosis (TB) remains a critical global health concern due to multi-drug-resistant strains. We present **RGTFormer**, a novel deep learning architecture combining a **Categorical Gated Transformer (CGT)** with a **Relational Graph Convolutional Network (RGCN)** to predict mutation-driven drug resistance in *Mycobacterium tuberculosis*.
-
-**Key Results**  
-- **98.67%** accuracy on independent test set  
-- **97.15%** average accuracy (10-fold CV)  
-- Outperforms CNNs, GNNs, and classical ML baselines  
+**Authors:**  
+Rakesh Chandra Joshi¹, Hitesh Reddy Dereddy², Sandip Mukhopadhyay³, Radim Burget⁴, Malay Kishore Dutta¹*  
+¹ Amity Centre for Artificial Intelligence, Amity University, Noida, India  
+² Department of Artificial Intelligence, Amity School of Engineering & Technology, Amity University, Noida, India  
+³ ICMR–National Institute for Research in Bacterial Infections, Kolkata, India  
+⁴ Brno University of Technology, Czech Republic  
+*Corresponding Author: malaykishoredutta@gmail.com*  
 
 ---
 
-## Key Contributions
-
-1. First model fusing **relational mutation graphs (RGCN)** + **categorical sequence learning (Transformer)** for TB resistance.
-2. Novel **Categorical Gated Transformer (CGT)** with GLU + soft attention masking.
-3. Multi-gene, multi-drug prediction across **6 genes**: `rpoB`, `katG`, `inhA`, `pncA`, `gyrA`, `gyrB`.
-4. Biologically grounded labeling using **ΔΔG** (thermodynamic stability).
+## 🧬 Overview
+**RGTFormer** integrates a **Categorical Gated Transformer (CGT)** with a **Relational Graph Convolutional Network (RGCN)** to predict mutation-associated resistance to first- and second-line anti-tuberculosis (TB) drugs.  
+It learns from both **sequence-based categorical** and **structure-based numerical** mutation descriptors to model multi-gene, multi-drug resistance with interpretability and efficiency.
 
 ---
 
-## Dataset Composition (Table I)
+## 📚 Abstract
+Tuberculosis (TB), caused by *Mycobacterium tuberculosis*, remains a global health threat, worsened by multi-drug-resistant TB (MDR-TB). Resistance often stems from single-nucleotide mutations in key genes.  
+RGTFormer fuses RGCN-based relational reasoning and Transformer-based categorical attention to predict resistance from mutation profiles.  
+Evaluated on 753 curated mutations across six genes (*rpoB, katG, inhA, pncA, gyrA, gyrB*), the model achieved:
 
-| Drug              | Gene  | TBDReaMDB | GMTV | Final Variations | Resistant | Susceptible |
-|-------------------|-------|-----------|------|------------------|-----------|-------------|
-| Rifampin          | rpoB  | 134       | 198  | 114              | 50        | 64          |
-| Isoniazid         | inhA  | 13        | 30   | 27               | 10        | 17          |
-| Isoniazid         | katG  | 273       | 83   | 250              | 135       | 115         |
-| Pyrazinamide      | pncA  | 278       | 137  | 241              | 139       | 102         |
-| Fluoroquinolones  | gyrA  | 17        | 112  | 72               | 31        | 41          |
-| Fluoroquinolones  | gyrB  | 18        | 72   | 49               | 28        | 21          |
-| **Total**         |       |           |      | **753**          | **393**   | **360**     |
+- **Independent-test accuracy:** 98.67 %  
+- **10-fold CV accuracy:** 97.15 %  
+- **Precision:** 100 % **Recall:** 97.37 % **F1:** 98.67 %
 
 ---
 
-## Numerical Features (6 total)
-
-| Feature                    | Description |
-|----------------------------|-----------|
-| Molecular Weight           | Mass of side chain |
-| Van der Waals Volume       | Spatial size |
-| Polarity                   | Ability to form H-bonds |
-| Isoelectric Point (pI)     | Net charge pH |
-| Hydrophobicity             | Preference for hydrophobic core |
-| Normalized ASA             | Solvent exposure |
-
-All computed as **Δ(mutant – wild-type)** and z-score normalized.
+## 🧠 Key Contributions
+- 🧩 **Hybrid architecture** combining relational (RGCN) and categorical (CGT) feature learning.  
+- 🔬 Handles heterogeneous genomic features — physicochemical + residue/structure.  
+- 🧮 Attention-based fusion ensures interpretability and robustness.  
+- 🧫 Multi-gene, multi-drug generalization across six resistance genes.  
+- 📈 Outperforms all classical ML and deep-learning baselines.  
+- 💡 SHAP analysis reveals biologically meaningful feature contributions.
 
 ---
 
-## Categorical Features (3 total)
+## 🧩 Dataset
+| Gene | Drug | Variants | Resistant | Susceptible | Source |
+|------|------|-----------|-----------|--------------|---------|
+| rpoB | Rifampicin | 114 | 50 | 64 | TBDReaMDB + GMTV |
+| katG | Isoniazid | 250 | 135 | 115 | TBDReaMDB + GMTV |
+| inhA | Isoniazid | 27 | 10 | 17 | TBDReaMDB + GMTV |
+| pncA | Pyrazinamide | 241 | 139 | 102 | TBDReaMDB + GMTV |
+| gyrA | Fluoroquinolones | 72 | 31 | 41 | TBDReaMDB + GMTV |
+| gyrB | Fluoroquinolones | 49 | 28 | 21 | TBDReaMDB + GMTV |
 
-| Feature                | Categories |
-|------------------------|----------|
-| Residue Type (WT/Mut)  | Hydrophobic, Aromatic, Polar, Charged |
-| Secondary Structure    | Helix, Sheet, Turn, Coil |
-
-Label-encoded for CGT module.
-
----
-
-## Overall Workflow (Figure 1)
-
-<img src="figures/workflow.jpg" alt="Figure 1: Overall Workflow" width="100%"/>
+**Total:** 753 mutations **Labels:** ΔΔG < 0 → Resistant; ΔΔG ≥ 0 → Susceptible  
 
 ---
 
-## RGTFormer Architecture (Figure 2)
+## ⚙️ Feature Engineering
+**Numerical (z-score normalized mutant–wild-type differences):**
+1. Molecular weight 2. Van der Waals volume 3. Polarity  
+4. Isoelectric point 5. Hydrophobicity 6. Normalized ASA  
 
-<img src="figures/architecture.jpg" alt="Figure 2: RGTFormer Architecture" width="100%"/>
-
-**Two parallel branches** → **Attention Fusion** → **Classification**
-
----
-
-## Categorical Gated Transformer (CGT) Module (Figure 3)
-
-<img src="figures/cgt.jpg" alt="Figure 3: CGT Module" width="100%"/>
-
-### CGT Equations
-
-$$
-z_t = \text{ReLU}(W_z x_{\text{cat}} + b_z), \quad \text{GLU}(z_t, g_t) = z_t \cdot \sigma(g_t) \quad (1)
-$$
-
-$$
-m_t = \text{Softmax}(W_m x_{\text{cat}} + b_m) \quad (2)
-$$
-
-$$
-x_{\text{masked},t} = x_{\text{cat}} \odot m_t \quad (3)
-$$
-
-$$
-h_{\text{CGT}} = \sum_{j=1}^{N} \gamma_j h_j, \quad \sum \gamma_j = 1 \quad (4)
-$$
+**Categorical:**
+- Residue type (0 charged / 1 polar / 2 aromatic / 3 hydrophobic)  
+- Secondary structure (1 helix / 2 sheet / 3 coil / 4 turn)
 
 ---
 
-## Performance on Independent Test Set (Table II)
+## 🧮 Methodology
 
-| Model                | Accuracy | Precision | Recall | F1-Score |
-|----------------------|----------|-----------|--------|----------|
-| **RGTFormer (Ours)** | **98.67%** | **98.71%** | **98.62%** | **98.66%** |
-| RGCN only            | 94.32%   | 94.10%    | 94.55% | 94.32%   |
-| CGT only             | 93.87%   | 93.65%    | 94.10% | 93.87%   |
-| CNN                  | 92.10%   | 91.88%    | 92.33% | 92.10%   |
-| GAT                  | 91.45%   | 91.20%    | 91.70% | 91.45%   |
-| SVM                  | 85.33%   | 85.10%    | 85.55% | 85.32%   |
-| Random Forest        | 84.97%   | 84.75%    | 85.20% | 84.97%   |
+### 🔗 Workflow
+![Fig 1 – Workflow](figures/workflow.jpg)
 
----
+### 🧠 Model Architecture
+RGTFormer = RGCN + CGT + Attention Fusion  
+![Fig 2 – Architecture](figures/architecture.jpg)
 
-## Per-Gene Performance (10-fold CV) (Table III)
+**RGCN layer**
+\[
+h_i^{(l+1)} = \sigma\!\left(\sum_{r\in R}\sum_{j\in N_i^r}\!\tfrac{1}{c_{i,r}}W_r^{(l)}h_j^{(l)}\right)
+\]
+![Fig 3 – RGCN](figures/rgc.jpg)
 
-| Gene  | Accuracy | Precision | Recall | F1-Score |
-|-------|----------|-----------|--------|----------|
-| rpoB  | 99.12%   | 99.00%    | 99.25% | 99.12%   |
-| katG  | 98.80%   | 98.70%    | 98.90% | 98.80%   |
-| inhA  | 96.30%   | 96.00%    | 96.60% | 96.30%   |
-| pncA  | 97.51%   | 97.40%    | 97.62% | 97.51%   |
-| gyrA  | 98.61%   | 98.50%    | 98.72% | 98.61%   |
-| gyrB  | 97.96%   | 97.80%    | 98.12% | 97.96%   |
-| **Avg**| **97.15%**|           |        |          |
+**CGT (Gated Transformer)**
+\[
+z=ReLU(Wx+b),\quad GLU(z,g)=z\!\cdot\!\sigma(g)
+\]
+\[
+m=Softmax(Wx+b),\quad x'_i=x_i\odot m
+\]
+![Fig 4 – CGT](figures/cgt.jpg)
 
----
+**Fusion + Classification**
+\[
+h=\alpha h_{RGCN}+\beta h_{CGT},\;\alpha+\beta=1,\quad
+y=Softmax(Wh+b)
+\]
 
-## Ablation Study (Table IV)
-
-| Variant                        | Accuracy |
-|--------------------------------|----------|
-| Full RGTFormer                 | **98.67%** |
-| w/o RGCN                       | 94.32% (-4.35%) |
-| w/o CGT                        | 93.87% (-4.80%) |
-| w/o Attention Fusion           | 95.46% (-3.21%) |
-| w/o Categorical Encoding       | 93.55% (-5.12%) |
-| w/o Graph Edges                | 91.79% (-6.88%) |
+**Training:** Adam (β₁ = 0.9, β₂ = 0.999), 100 epochs, BCE loss, PyTorch on NVIDIA A100 (40 GB)
 
 ---
 
-## Model Efficiency (Table V)
+## 🧪 Experimental Results
+| Variant | GNN Dim | Layers | LR | CGT Dim | Accuracy % | Precision % | Recall % | F1 % |
+|:--|--:|--:|--:|--:|--:|--:|--:|--:|
+| V1 | 64 | 3 | 0.001 | 64 | 97.35 | 98.65 | 96.05 | 97.33 |
+| **V2 (Best)** | **128** | **4** | **0.0005** | **128** | **98.67** | **100.0** | **97.37** | **98.67** |
+| V3 | 32 | 2 | 0.002 | 32 | 94.70 | 97.22 | 92.11 | 94.59 |
 
-| Model         | Parameters | Training Time (10-fold) | Inference (per sample) |
-|---------------|------------|--------------------------|------------------------|
-| RGTFormer     | **420K**   | **18.2 min**             | **0.84 ms**            |
-| CNN           | 1.2M       | 32.1 min                 | 1.67 ms                |
-| GAT           | 890K       | 41.5 min                 | 2.31 ms                |
+### Ablation & Baselines
+| Model | 10-Fold Acc % | Test Acc % | Prec | Rec | F1 |
+|:--|--:|--:|--:|--:|--:|
+| **RGTFormer Full** | **97.15** | **98.67** | 1.00 | 0.97 | 0.99 |
+| RGCN only | 94.57 | 96.02 | 0.97 | 0.95 | 0.96 |
+| CGT only | 67.81 | 68.87 | 0.69 | 0.68 | 0.69 |
+| GCN + Vanilla Transformer | 65.36 | 66.89 | 0.72 | 0.55 | 0.63 |
+
+### Classical ML Comparison
+| SVM | RF | Extra Trees | XGBoost | KNN | MLP (Complex) | ANN | **RGTFormer** |
+|--|--|--|--|--|--|--|--|
+| 90.07 | 93.38 | 92.72 | 95.36 | 95.36 | 94.70 | 94.04 | **98.67** |
+
+**ROC AUC = 0.9923 (149 / 151 correct)**  
+| Confusion Matrix | ROC Curve |
+|:--:|:--:|
+| ![CM](results/figures/fig5a_confusion_matrix.png) | ![ROC](results/figures/fig5b_roc_curve.png) |
 
 ---
+
+## 🧩 Explainability – SHAP
+![Fig 6 – SHAP Importance](results/figures/fig6_shap_importance.png)  
+Hydrophobicity ≫ Molecular Weight ≫ Isoelectric Point ≫ ASA as key features.
+
+---
+
+## 📊 Appendix Summary
+| Feature | Mean | Std | Min | Max |
+|--|--:|--:|--:|--:|
+| Mol Weight | −0.0013 | 0.2989 | −1 | 0.77 |
+| Volume | 0.005 | 0.2917 | −1 | 0.8 |
+| Polarity | −0.0277 | 0.549 | −1 | 1 |
+| pI | 0.0232 | 0.2956 | −0.71 | 0.87 |
+| Hydrophobicity | −0.0456 | 0.3268 | −0.92 | 0.92 |
+| Norm ASA | 0.4797 | 0.2721 | 0 | 1 |
+
+### Feature Distributions
+![Vol](results/figures/appendix_a1_volume.png)
+![Pol](results/figures/appendix_a2_polarity.png)
+![ASA](results/figures/appendix_a3_asa.png)
+![MW](results/figures/appendix_a4_weight.png)
+![pI](results/figures/appendix_a5_pI.png)
+![Hydro](results/figures/appendix_a6_hydrophobicity.png)
+
+### Residue & Structure Counts
+![Wild](results/figures/appendix_a7_wildtype_counts.png)
+![Mut](results/figures/appendix_a8_mutant_counts.png)
+![Struct](results/figures/appendix_a9_secondary_structure.png)
+
+### Correlation Matrix
+![Corr](results/figures/appendix_a10_correlation_matrix.png)
+
+---
+
+## 📚 Comparison with Existing Studies
+| Study | Method | Drugs | Accuracy | Remarks |
+|--|--|--|--:|--|
+| Hadikurniawati 2023 | Classical ML | RIF INH PZA EMB | ~99 | No graph features |
+| CRyPTIC 2022 | ML on WGS | 13 | >95 | Low interpretability |
+| Jamal 2020 | ML + Docking | 4 | ~85 | High runtime |
+| Bhaskar 2023 | CNN on CT + Genomics | – | 97.27 | No mutation-level |
+| **RGTFormer** | CGT + RGCN | 6 | **98.67** | Interpretable + efficient |
+
+---
+
+## 💡 Key Takeaways
+- Hybrid graph-transformer captures both relational + contextual dependencies.  
+- Mutation-level reasoning enhances interpretability.  
+- SHAP reveals biologically coherent physicochemical drivers.  
+- Extensible to other antimicrobial resistance tasks.
+
+---
+
+## 🧰 Implementation
+**Environment**
+```bash
+Python >=3.10
+PyTorch >=2.1
+scikit-learn pandas numpy shap matplotlib networkx

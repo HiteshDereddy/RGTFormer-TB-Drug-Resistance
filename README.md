@@ -93,6 +93,7 @@ Evaluated on 753 curated mutations across six genes (*rpoB, katG, inhA, pncA, gy
 $$
 h_i^{(l+1)} = \sigma\left( \sum_{r \in \mathcal{R}} \sum_{j \in \mathcal{N}_i^r} \frac{1}{c_{i,r}} W_r^{(l)} h_j^{(l)} \right)
 $$
+
 ![Fig 3 – RGCN](figures/rgc.jpg)
 
 #### **CGT (Gated Transformer)**
@@ -105,6 +106,7 @@ m &= \text{Softmax}(Wx + b), \\
 &\quad x'_i = x_i \odot m
 \end{aligned}
 $$
+
 ![Fig 4 – CGT](figures/cgt.jpg)
 
 #### **Fusion + Classification**

@@ -110,10 +110,10 @@ $$
 ![Fig 4 – CGT](figures/cgt.jpg)
 
 #### **Fusion + Classification**
-\[
+$$
 h=\alpha h_{\text{RGCN}}+\beta h_{\text{CGT}},\;\alpha+\beta=1,\quad
 y=\text{Softmax}(Wh+b)
-\]
+$$
 
 **Training:** Adam (β₁ = 0.9, β₂ = 0.999), 100 epochs, BCE loss, PyTorch on NVIDIA A100 (40 GB)
 

@@ -89,13 +89,14 @@ Evaluated on 753 curated mutations across six genes (*rpoB, katG, inhA, pncA, gy
 **RGTFormer = RGCN + CGT + Attention Fusion**  
 ![Fig 2 – Architecture](figures/architecture.jpg)
 
-#### **RGCN Layer**
+**RGCN layer**
 $$
 h_i^{(l+1)} = \sigma\left( \sum_{r \in \mathcal{R}} \sum_{j \in \mathcal{N}_i^r} \frac{1}{c_{i,r}} W_r^{(l)} h_j^{(l)} \right)
 $$
+
 ![Fig 3 – RGCN](figures/rgc.jpg)
 
-#### **CGT (Gated Transformer)**
+**CGT (Gated Transformer)**
 $$
 \begin{aligned}
 z &= \operatorname{ReLU}(Wx + b), \\

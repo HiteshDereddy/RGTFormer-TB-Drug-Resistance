@@ -89,14 +89,13 @@ Evaluated on 753 curated mutations across six genes (*rpoB, katG, inhA, pncA, gy
 **RGTFormer = RGCN + CGT + Attention Fusion**  
 ![Fig 2 – Architecture](figures/architecture.jpg)
 
-**RGCN layer**
+#### **RGCN Layer**
 $$
 h_i^{(l+1)} = \sigma\left( \sum_{r \in \mathcal{R}} \sum_{j \in \mathcal{N}_i^r} \frac{1}{c_{i,r}} W_r^{(l)} h_j^{(l)} \right)
 $$
-
 ![Fig 3 – RGCN](figures/rgc.jpg)
 
-**CGT (Gated Transformer)**
+#### **CGT (Gated Transformer)**
 $$
 \begin{aligned}
 z &= \operatorname{ReLU}(Wx + b), \\
@@ -111,7 +110,7 @@ $$
 #### **Fusion + Classification**
 \[
 h=\alpha h_{RGCN}+\beta h_{CGT},\;\alpha+\beta=1,\quad
-y=\operatorname{Softmax}(Wh+b)
+y=Softmax(Wh+b)
 \]
 
 **Training:** Adam (β₁ = 0.9, β₂ = 0.999), 100 epochs, BCE loss, PyTorch on NVIDIA A100 (40 GB)

@@ -93,24 +93,24 @@ Evaluated on 753 curated mutations across six genes (*rpoB, katG, inhA, pncA, gy
 $$
 h_i^{(l+1)} = \sigma\left( \sum_{r \in \mathcal{R}} \sum_{j \in \mathcal{N}_i^r} \frac{1}{c_{i,r}} W_r^{(l)} h_j^{(l)} \right)
 $$
-![Fig 3 – RGCN](figures/rgc.jpg)
+<img src="figures/rgc.jpg" alt="Fig 3 – RGCN" width="400"/>
 
 #### **CGT (Gated Transformer)**
 $$
 \begin{aligned}
-z &= \operatorname{ReLU}(Wx + b), \\
-&\quad GLU(z,g) = z \cdot \sigma(g) \\
+z &= \text{ReLU}(Wx + b), \\
+&\quad \text{GLU}(z,g) = z \cdot \sigma(g) \\
 \\
-m &= \operatorname{Softmax}(Wx + b), \\
+m &= \text{Softmax}(Wx + b), \\
 &\quad x'_i = x_i \odot m
 \end{aligned}
 $$
-![Fig 4 – CGT](figures/cgt.jpg)
+<img src="figures/cgt.jpg" alt="Fig 4 – CGT" width="400"/>
 
 #### **Fusion + Classification**
 \[
-h=\alpha h_{RGCN}+\beta h_{CGT},\;\alpha+\beta=1,\quad
-y=Softmax(Wh+b)
+h=\alpha h_{\text{RGCN}}+\beta h_{\text{CGT}},\;\alpha+\beta=1,\quad
+y=\text{Softmax}(Wh+b)
 \]
 
 **Training:** Adam (β₁ = 0.9, β₂ = 0.999), 100 epochs, BCE loss, PyTorch on NVIDIA A100 (40 GB)
